@@ -8,13 +8,6 @@ function App() {
     message: ''
   })
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    // In production, this would send to your CRM/email service
-    alert(`Thanks ${formData.name}! We'll be in touch within 24 hours to discuss how AI Craft Consult can help ${formData.company}.`)
-    setFormData({ name: '', email: '', company: '', message: '' })
-  }
-
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
@@ -413,14 +406,22 @@ function App() {
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
               Let's Talk
             </h2>
-            <p className="text-xl text-slate-300 max-w-2xl mx-auto">
+            <p className="text-xl text-slate-300 max-w-2xl mx-auto mb-6">
               Book a 30-minute call. No sales pitch, no obligations.<br />
               Just a straightforward conversation about where you are and where you want to go.
+            </p>
+            <p className="text-lg text-slate-400">
+              Prefer to call? <a href="tel:07356015684" className="text-white font-semibold hover:underline">07356 015684</a>
             </p>
           </div>
 
           <div className="bg-white rounded-xl p-8 md:p-12">
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form action="https://formsubmit.co/matt.coughlan@outlook.com" method="POST" className="space-y-6">
+              {/* FormSubmit Configuration */}
+              <input type="hidden" name="_subject" value="New AI Craft Consult Inquiry" />
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="text" name="_honey" style={{display: 'none'}} />
+
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-2">
@@ -510,7 +511,8 @@ function App() {
                 Manchester-based AI adoption consultancy. We build capability, not dependency.
               </p>
               <p className="text-sm text-slate-500">
-                hello@aicraftconsult.com<br />
+                <a href="mailto:hello@aicraftconsult.com" className="hover:text-slate-900 transition-colors">hello@aicraftconsult.com</a><br />
+                <a href="tel:07356015684" className="hover:text-slate-900 transition-colors">07356 015684</a><br />
                 Manchester, UK
               </p>
             </div>
